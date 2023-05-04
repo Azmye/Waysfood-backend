@@ -1,13 +1,13 @@
 package models
 
-import "time"
+import "gorm.io/gorm"
 
 type Transaction struct {
-	ID              uint          `gorm:"primaryKey"`
-	OrderID         uint          `gorm:"not null"`
-	TransactionID   string        `gorm:"not null"`
-	TransactionDate time.Time     `gorm:"not null"`
-	Amount          float64       `gorm:"not null"`
-	PaymentMethod   PaymentMethod `gorm:"not null"`
-	Order           Order         `gorm:"foreignKey:OrderID"`
+	gorm.Model
+	TransactionID string `gorm:"not null"`
+	ProductID     uint   `gorm:"not null"`
+	CustomerID    uint   `gorm:"not null"`
+	Status        string `gorm:"not null"`
+	Product       Product
+	Customer      User
 }

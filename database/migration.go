@@ -10,8 +10,7 @@ func RunMigration() {
 	err := mysql.DB.AutoMigrate(
 		&models.User{},
 		&models.Product{},
-		&models.Order{},
-		&models.OrderDetails{},
+		&models.Cart{},
 		&models.Transaction{},
 	)
 

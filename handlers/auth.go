@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -30,6 +31,8 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
+	fmt.Println(request)
+
 	validation := validator.New()
 	err := validation.Struct(request)
 	if err != nil {
@@ -42,9 +45,12 @@ func (h *handlerAuth) Register(c echo.Context) error {
 	}
 
 	user := models.User{
-		Name:     request.Name,
-		Email:    request.Email,
-		Password: password,
+		Name:        request.Name,
+		Email:       request.Email,
+		Password:    password,
+		Address:     request.Address,
+		PhoneNumber: request.PhoneNumber,
+		Role:        request.Role,
 	}
 
 	data, err := h.AuthRepository.Register(user)
@@ -89,6 +95,7 @@ func (h *handlerAuth) Login(c echo.Context) error {
 	loginResponse := authDto.LoginResponse{
 		Email: user.Email,
 		Token: token,
+		Role:  user.Role,
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: loginResponse})
