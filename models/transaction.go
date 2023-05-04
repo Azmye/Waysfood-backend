@@ -8,6 +8,7 @@ type Transaction struct {
 	ProductID     uint   `gorm:"not null"`
 	CustomerID    uint   `gorm:"not null"`
 	Status        string `gorm:"not null"`
+	Location      string `gorm:"not null"`
 	Product       Product
 	Customer      User
 }
