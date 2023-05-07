@@ -2,6 +2,7 @@ package routes
 
 import (
 	"waysfood/handlers"
+	"waysfood/pkg/middleware"
 	"waysfood/pkg/mysql"
 	"waysfood/repositories"
 
@@ -14,5 +15,5 @@ func UserRoutes(e *echo.Group) {
 
 	e.GET("/users", h.FindUsers)
 	e.GET("/user/:id", h.GetUser)
-	e.DELETE("/user/:id", h.DeleteUser)
+	e.DELETE("/user/:id", middleware.Auth(h.DeleteUser))
 }

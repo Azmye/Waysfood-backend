@@ -2,6 +2,7 @@ package routes
 
 import (
 	"waysfood/handlers"
+	"waysfood/pkg/middleware"
 	"waysfood/pkg/mysql"
 	"waysfood/repositories"
 
@@ -14,5 +15,5 @@ func CartRoutes(e *echo.Group) {
 
 	e.GET("/carts", h.FindCarts)
 	e.GET("/cart/:id", h.GetCart)
-	e.DELETE("/cart/:id", h.DeleteCart)
+	e.DELETE("/cart/:id", middleware.Auth(h.DeleteCart))
 }
