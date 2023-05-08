@@ -120,5 +120,6 @@ func convertResponse(u models.User) userdto.UserResponse {
 		Password:    u.Password,
 		Address:     u.Address,
 		PhoneNumber: u.PhoneNumber,
+		ImageUrl:    u.ImageUrl,
 	}
 }
