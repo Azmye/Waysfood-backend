@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"waysfood/database"
-	"waysfood/pkg/mysql"
+	mysqldo "waysfood/pkg/mysql"
 	"waysfood/routes"
 
 	"github.com/joho/godotenv"
@@ -26,7 +26,7 @@ func main() {
 		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization"},
 	}))
 
-	mysql.DatabaseInit()
+	mysqldo.DatabaseInit()
 	database.RunMigration()
 
 	routes.RouteInit(e.Group("/api/v1"))

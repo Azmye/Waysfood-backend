@@ -3,14 +3,14 @@ package routes
 import (
 	"waysfood/handlers"
 	"waysfood/pkg/middleware"
-	"waysfood/pkg/mysql"
+	mysqldo "waysfood/pkg/mysql"
 	"waysfood/repositories"
 
 	"github.com/labstack/echo/v4"
 )
 
 func AuthRoutes(e *echo.Group) {
-	authRepository := repositories.RepositoryAuth(mysql.DB)
+	authRepository := repositories.RepositoryAuth(mysqldo.DB)
 	h := handlers.HandlerAuth(authRepository)
 
 	e.POST("/register", h.Register)

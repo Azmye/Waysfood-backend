@@ -3,14 +3,14 @@ package routes
 import (
 	"waysfood/handlers"
 	"waysfood/pkg/middleware"
-	"waysfood/pkg/mysql"
+	mysqldo "waysfood/pkg/mysql"
 	"waysfood/repositories"
 
 	"github.com/labstack/echo/v4"
 )
 
 func UserRoutes(e *echo.Group) {
-	userRepository := repositories.RepositoryUser(mysql.DB)
+	userRepository := repositories.RepositoryUser(mysqldo.DB)
 	h := handlers.HandlerUser(userRepository)
 
 	e.GET("/users", h.FindUsers)

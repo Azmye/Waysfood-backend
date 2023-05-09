@@ -3,14 +3,14 @@ package routes
 import (
 	"waysfood/handlers"
 	"waysfood/pkg/middleware"
-	"waysfood/pkg/mysql"
+	mysqldo "waysfood/pkg/mysql"
 	"waysfood/repositories"
 
 	"github.com/labstack/echo/v4"
 )
 
 func CartRoutes(e *echo.Group) {
-	userRepository := repositories.RepositoryCart(mysql.DB)
+	userRepository := repositories.RepositoryCart(mysqldo.DB)
 	h := handlers.HandlerCart(userRepository)
 
 	e.GET("/carts", h.FindCarts)

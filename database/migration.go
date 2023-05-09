@@ -3,11 +3,11 @@ package database
 import (
 	"fmt"
 	"waysfood/models"
-	"waysfood/pkg/mysql"
+	mysqldo "waysfood/pkg/mysql"
 )
 
 func RunMigration() {
-	err := mysql.DB.AutoMigrate(
+	err := mysqldo.DB.AutoMigrate(
 		&models.User{},
 		&models.Product{},
 		&models.Cart{},
