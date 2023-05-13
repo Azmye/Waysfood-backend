@@ -33,7 +33,7 @@ func (r *repository) GetCart(ID int) (models.Cart, error) {
 }
 
 func (r *repository) CreateCart(Cart models.Cart) (models.Cart, error) {
-	err := r.db.Create(&Cart).Error
+	err := r.db.Save(&Cart).Error
 
 	return Cart, err
 }
