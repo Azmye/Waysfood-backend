@@ -81,23 +81,13 @@ func (h *handlerCart) UpdateCart(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	cart, err := h.CartRepository.GetCart(id)
 
-	productID, _ := strconv.Atoi(c.FormValue("product_id"))
-	customerID, _ := strconv.Atoi(c.FormValue("customer_id"))
 	qty, _ := strconv.Atoi(c.FormValue("qty"))
 
 	request := cartDto.UpdateCartRequest{
-		ProductID:  uint(productID),
-		CustomerID: uint(customerID),
-		Quantity:   uint(qty),
-		Status:     c.FormValue("status"),
+		Quantity: uint(qty),
+		Status:   c.FormValue("status"),
 	}
 
-	if request.ProductID != 0 {
-		cart.ProductID = request.ProductID
-	}
-	if request.CustomerID != 0 {
-		cart.CustomerID = request.CustomerID
-	}
 	if request.Quantity != 0 {
 		cart.Quantity = request.Quantity
 	}
