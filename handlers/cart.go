@@ -85,7 +85,7 @@ func (h *handlerCart) UpdateCart(c echo.Context) error {
 	customerID, _ := strconv.Atoi(c.FormValue("customer_id"))
 	qty, _ := strconv.Atoi(c.FormValue("qty"))
 
-	request := cartDto.CreateCartRequest{
+	request := cartDto.UpdateCartRequest{
 		ProductID:  uint(productID),
 		CustomerID: uint(customerID),
 		Quantity:   uint(qty),
