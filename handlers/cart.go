@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	cartDto "waysfood/dto/cart"
@@ -42,9 +41,6 @@ func (h *handlerCart) GetCart(c echo.Context) error {
 }
 
 func (h *handlerCart) CreateCart(c echo.Context) error {
-	dataFile := c.Get("dataFile").(string)
-	fmt.Println("this is data file", dataFile)
-
 	productID, _ := strconv.Atoi(c.FormValue("product_id"))
 	customerID, _ := strconv.Atoi(c.FormValue("customer_id"))
 	qty, _ := strconv.Atoi(c.FormValue("qty"))
@@ -74,7 +70,7 @@ func (h *handlerCart) CreateCart(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
 
-	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: convertCartResponse(data)})
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
 }
 
 func (h *handlerCart) UpdateCart(c echo.Context) error {

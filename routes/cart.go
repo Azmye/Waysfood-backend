@@ -10,8 +10,8 @@ import (
 )
 
 func CartRoutes(e *echo.Group) {
-	userRepository := repositories.RepositoryCart(mysqldo.DB)
-	h := handlers.HandlerCart(userRepository)
+	cartRepository := repositories.RepositoryCart(mysqldo.DB)
+	h := handlers.HandlerCart(cartRepository)
 
 	e.GET("/carts", h.FindCarts)
 	e.GET("/cart/:id", h.GetCart)
