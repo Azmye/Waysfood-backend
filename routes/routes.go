@@ -7,4 +7,5 @@ func RouteInit(e *echo.Group) {
 	AuthRoutes(e)
 	ProductRoutes(e)
 	CartRoutes(e)
+	TransactionRoutes(e)
 }
