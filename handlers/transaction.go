@@ -72,12 +72,12 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 	}
 	// data form pattern submit to pattern entity db Transaction
 	Transactions := models.Transaction{
-		TransactionID: transactionId,
-		CustomerID:    uint(customerID),
-		TotalPrice:    int(request.TotalPrice),
-		Location:      request.Location,
-		PartnerID:     request.PartnerID,
-		Status:        "pending",
+		ID:         uint(transactionId),
+		CustomerID: uint(customerID),
+		TotalPrice: int(request.TotalPrice),
+		Location:   request.Location,
+		PartnerID:  request.PartnerID,
+		Status:     "pending",
 	}
 
 	dataTransactions, err := h.TransactionRepository.CreateTransaction(Transactions)
@@ -92,7 +92,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 	// 2. Initiate Snap request param
 	req := &snap.Request{
 		TransactionDetails: midtrans.TransactionDetails{
-			OrderID:  strconv.Itoa(dataTransactions.TransactionID),
+			OrderID:  strconv.Itoa(int(dataTransactions.ID)),
 			GrossAmt: int64(dataTransactions.TotalPrice),
 		},
 		CreditCard: &snap.CreditCardDetails{
@@ -230,6 +230,6 @@ func SendMail(status string, transaction models.Transaction) {
 
 func convertDeleteTransaction(u models.Transaction) transactionDto.TransactionDeleteResponse {
 	return transactionDto.TransactionDeleteResponse{
-		ID: u.TransactionID,
+		ID: int(u.ID),
 	}
 }
