@@ -76,6 +76,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		CustomerID:    uint(customerID),
 		TotalPrice:    int(request.TotalPrice),
 		Location:      request.Location,
+		PartnerID:     request.PartnerID,
 		Status:        "pending",
 	}
 
