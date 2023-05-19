@@ -77,7 +77,7 @@ func (h *handlerTransaction) CreateTransaction(c echo.Context) error {
 		TotalPrice: int(request.TotalPrice),
 		Location:   request.Location,
 		PartnerID:  request.PartnerID,
-		Status:     "success",
+		Status:     "pending",
 	}
 
 	dataTransactions, err := h.TransactionRepository.CreateTransaction(Transactions)
